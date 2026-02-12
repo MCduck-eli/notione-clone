@@ -5,9 +5,14 @@ import Logo from "../logo/logo";
 import { ModeToggle } from "../theme/mode-toggle";
 import { cn } from "@/lib/utils";
 import useScrolled from "@/hook/scrolled-hook";
+import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import Loader from "@/components/ui/loader";
 
 export default function Navbar() {
     const scrolled = useScrolled();
+    const { isLoaded, isSignedIn } = useAuth();
+
     return (
         <div className="sticky inset-0 bg-black z-50">
             <div
@@ -22,11 +27,33 @@ export default function Navbar() {
                         Notion
                     </h1>
                 </div>
+
                 <div className="flex flex-row">
-                    <Button variant="ghost" className="mr-2">
-                        Log In
-                    </Button>
-                    <Button>Get Notion Free</Button>
+                    <div className="w-full flex justify-center items-center relative bottom-2">
+                        {!isLoaded && <Loader />}
+                    </div>
+
+                    {isLoaded && !isSignedIn && (
+                        <>
+                            <SignInButton mode="modal">
+                                <Button variant="ghost" className="mr-2">
+                                    Log In
+                                </Button>
+                            </SignInButton>
+
+                            <SignUpButton mode="modal">
+                                <Button>Get Notion Free</Button>
+                            </SignUpButton>
+                        </>
+                    )}
+
+                    {isLoaded && isSignedIn && (
+                        <Button variant="ghost">
+                            <Link href={"/documents"}>Enter Notion</Link>
+                            <UserButton afterSignOutUrl="/" />
+                        </Button>
+                    )}
+
                     <div className="ml-2">
                         <ModeToggle />
                     </div>

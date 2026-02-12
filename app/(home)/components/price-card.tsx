@@ -1,6 +1,11 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import Loader from "@/components/ui/loader";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 
 export default function PriceCard() {
+    const { isLoaded, isSignedIn } = useAuth();
     return (
         <>
             <div className="w-full h-auto mb-8 flex flex-row gap-4">
@@ -24,9 +29,23 @@ export default function PriceCard() {
                             </span>
                         </div>
 
-                        <Button className="w-full mb-4 cursor-pointer">
-                            Get started
-                        </Button>
+                        <div className="w-full flex justify-center items-center relative bottom-2">
+                            {!isLoaded && <Loader />}
+                        </div>
+
+                        {isLoaded && !isSignedIn && (
+                            <SignInButton mode="modal">
+                                <Button className="w-full mb-4 cursor-pointer">
+                                    Log In
+                                </Button>
+                            </SignInButton>
+                        )}
+
+                        {isLoaded && isSignedIn && (
+                            <Button className="w-full mb-4 cursor-pointer">
+                                Get started
+                            </Button>
+                        )}
 
                         <ul role="list" className="mb-8 space-y-4 text-left">
                             {item.features.map((feature, index) => (
