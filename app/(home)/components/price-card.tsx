@@ -8,16 +8,16 @@ export default function PriceCard() {
     const { isLoaded, isSignedIn } = useAuth();
     return (
         <>
-            <div className="w-full h-auto mb-8 flex flex-row gap-4">
+            <div className="w-full h-auto mb-8 flex md:flex-row flex-col gap-4">
                 {price.map((item, index) => (
                     <div
                         key={index}
-                        className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8  dark:text-white"
+                        className="flex flex-col p-6 md:w-auto w-110 mx-auto max-w-lg text-center text-gray-900 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8  dark:text-white"
                     >
                         <h3 className="mb-4 text-2xl font-semibold">
                             {item.name}
                         </h3>
-                        <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                        <p className="font-light text-gray-500 md:text-lg text-sm dark:text-gray-400">
                             {item.bio}
                         </p>
                         <div className="flex justify-center items-baseline my-8">

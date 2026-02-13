@@ -19,12 +19,12 @@ const clientsImages = [
 
 export default function Clients() {
     return (
-        <div className="max-w-150 mx-auto h-auto ">
+        <div className="max-w-150 mx-auto h-auto md:px-0 px-4">
             <h1 className="text-center text-4xl font-bold mt-10">
                 Millions run on Notion every day
             </h1>
             <div className="flex justify-center mt-2">
-                <span className="text-muted-foreground text-center text-lg">
+                <span className="text-muted-foreground text-center md:text-lg text-sm">
                     Powering teams at companies of all sizes, from startups to
                     Fortune 500s. Established in 2013, Notion has been trusted
                 </span>
@@ -32,14 +32,23 @@ export default function Clients() {
 
             <div className="flex justify-center items-center gap-10 mt-5 flex-wrap">
                 {clientsImages.map((image, index) => (
-                    <Image
-                        key={index}
-                        src={image}
-                        alt={`client-${index + 1}`}
-                        width={40}
-                        height={40}
-                        className="object-contain"
-                    />
+                    <>
+                        <Image
+                            key={index}
+                            src={image}
+                            alt={`client-${index + 1}`}
+                            width={40}
+                            height={40}
+                            className="object-contain md:block hidden"
+                        />
+                        <Image
+                            src={image}
+                            alt={`client`}
+                            width={25}
+                            height={25}
+                            className="object-contain md:hidden block"
+                        />
+                    </>
                 ))}
             </div>
         </div>

@@ -8,6 +8,7 @@ import useScrolled from "@/hook/scrolled-hook";
 import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Loader from "@/components/ui/loader";
+import MobileLogo from "../logo/mobile-logo";
 
 export default function Navbar() {
     const scrolled = useScrolled();
@@ -22,8 +23,13 @@ export default function Navbar() {
                 }
             >
                 <div className="flex flex-row">
-                    <Logo />
-                    <h1 className="ml-2 text-xl font-bold flex items-center">
+                    <div className="md:block hidden">
+                        <Logo />
+                    </div>
+                    <div className="md:hidden block">
+                        <MobileLogo />
+                    </div>
+                    <h1 className="ml-2 md:text-xl text-sm font-bold flex items-center">
                         Notion
                     </h1>
                 </div>

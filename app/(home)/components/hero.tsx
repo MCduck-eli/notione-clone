@@ -12,11 +12,11 @@ export default function Hero() {
     return (
         <div className="w-full h-auto mt-10">
             <div className="flex justify-center items-center flex-col gap-4 w-full">
-                <h1 className="text-7xl font-bold text-center">
+                <h1 className="md:text-7xl text-4xl font-bold text-center">
                     Write, Plan, Share. With AI <br /> at your side
                 </h1>
 
-                <p className="text-2xl text-center">
+                <p className="md:text-2xl text-lg text-center">
                     Notion is the all-in-one workspace for your notes, tasks,
                     <br />
                     wikis, and databases.
@@ -26,7 +26,7 @@ export default function Hero() {
                 </div>
 
                 {isLoaded && !isSignedIn && (
-                    <div className="mt-4">
+                    <div className="md:mt-4 mt-0">
                         <SignInButton mode="modal">
                             <Button className="cursor-pointer">
                                 Get Notion Free <MoveRight />
@@ -36,7 +36,7 @@ export default function Hero() {
                 )}
 
                 {isLoaded && isSignedIn && (
-                    <div className="mt-4">
+                    <div className="md:mt-4 mt-0">
                         <Link href="/documents">
                             <Button className="cursor-pointer">
                                 Enter Notion <MoveRight />

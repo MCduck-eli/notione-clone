@@ -6,6 +6,7 @@ import Clients from "./clients";
 import Teams from "./teams";
 import PriceCard from "./price-card";
 import Footer from "./shared/footer";
+import HeroMobileImage from "./hero-mobile-image";
 
 export {
     Navbar,
@@ -16,4 +17,5 @@ export {
     Teams,
     PriceCard,
     Footer,
+    HeroMobileImage,
 };

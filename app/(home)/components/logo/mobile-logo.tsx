@@ -1,22 +1,22 @@
 import Image from "next/image";
 
-export default function Logo() {
+export default function MobileLogo() {
     return (
         <div className="relative">
             <Image
                 src="/logo.svg"
                 alt="Logo"
-                width={50}
-                height={50}
-                className="hidden md:block dark:hidden"
+                width={28}
+                height={28}
+                className="block md:hidden dark:hidden"
             />
 
             <Image
                 src="/logo-dark.svg"
                 alt="Logo Dark"
-                width={50}
-                height={50}
-                className="hidden md:dark:block"
+                width={28}
+                height={28}
+                className="hidden dark:block md:hidden"
             />
         </div>
     );
