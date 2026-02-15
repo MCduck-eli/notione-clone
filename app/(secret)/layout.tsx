@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import User from "@/types/user.type";
 import { ChevronsLeftIcon, PanelLeftClose } from "lucide-react";
 import { useState } from "react";
+import DocumentList from "./components/document-list";
 
 export default function SecretLayout({ children }: User) {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -26,6 +27,10 @@ export default function SecretLayout({ children }: User) {
                 )}
 
                 <div className="p-4">Sidebar content</div>
+
+                <div>
+                    <DocumentList />
+                </div>
             </div>
 
             <div className="flex-1 relative transition-all duration-300">
