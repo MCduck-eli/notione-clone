@@ -32,9 +32,8 @@ export default function Clients() {
 
             <div className="flex justify-center items-center gap-10 mt-5 flex-wrap">
                 {clientsImages.map((image, index) => (
-                    <>
+                    <div key={index}>
                         <Image
-                            key={index}
                             src={image}
                             alt={`client-${index + 1}`}
                             width={40}
@@ -48,7 +47,7 @@ export default function Clients() {
                             height={25}
                             className="object-contain md:hidden block"
                         />
-                    </>
+                    </div>
                 ))}
             </div>
         </div>

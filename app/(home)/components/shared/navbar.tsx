@@ -15,7 +15,7 @@ export default function Navbar() {
     const { isLoaded, isSignedIn } = useAuth();
 
     return (
-        <div className="sticky inset-0 bg-black z-50">
+        <div className="sticky inset-0 bg-white dark:bg-black z-50">
             <div
                 className={
                     cn("w-full py-6 px-4 flex justify-between ") +

@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
+import { Toaster } from "sonner";
+import ModalProvider from "@/components/provider/modal-provider";
 import ClerkClientProvider from "@/components/provider/clerk-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -25,21 +28,26 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <ClerkClientProvider>
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        {children}
-                    </ThemeProvider>
+                    <EdgeStoreProvider>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            <ModalProvider />
+                            {children}
+                            <Toaster position="top-center" />
+                        </ThemeProvider>
+                    </EdgeStoreProvider>
                 </ClerkClientProvider>
             </body>
         </html>
     );
 }
+// layaout
