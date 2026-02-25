@@ -18,3 +18,5 @@ export default function ClerkClientProvider({ children }: User) {
         </ClerkProvider>
     );
 }
+
+// layout
