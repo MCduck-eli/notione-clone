@@ -12,9 +12,8 @@ export default function Teams() {
                 </p>
                 <div className="flex items-center gap-10 mt-5 flex-wrap">
                     {teams.map((team, index) => (
-                        <>
+                        <div key={index}>
                             <Image
-                                key={index}
                                 src={team}
                                 alt={`Team`}
                                 width={40}
@@ -30,7 +29,7 @@ export default function Teams() {
                                 height={25}
                                 className="object-contain md:hidden block"
                             />
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>
