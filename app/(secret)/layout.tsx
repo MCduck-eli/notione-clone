@@ -2,11 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import User from "@/types/user.type";
-<<<<<<< HEAD
-import { ChevronsLeftIcon, PanelLeftClose } from "lucide-react";
-import { useState } from "react";
-import DocumentList from "./components/document-list";
-=======
 import {
     ChevronsLeftIcon,
     Menu,
@@ -29,7 +24,6 @@ import Navbar from "@/components/navbar";
 import { useSearch } from "@/hook/use-search-hook";
 import { useSettings } from "@/hook/use-settings";
 import { useSidebar } from "@/hook/use-sidebar";
->>>>>>> recovery-branch
 
 export default function SecretLayout({ children }: User) {
     const sidebar = useSidebar();
@@ -56,14 +50,13 @@ export default function SecretLayout({ children }: User) {
             {!sidebar.isCollapsed && (
                 <div
                     onClick={sidebar.onCollapse}
-                    className="md:hidden fixed inset-0 bg-black/40 z-99998"
+                    className="md:hidden fixed inset-0 bg-black/40 z-[99998]"
                 />
             )}
 
             <aside
                 className={cn(
-                    "dark:bg-neutral-900 bg-neutral-100 relative transition-all duration-300 group z-99999 flex flex-col h-full",
-
+                    "dark:bg-neutral-900 bg-neutral-100 relative transition-all duration-300 group z-[99999] flex flex-col h-full",
                     sidebar.isCollapsed
                         ? "w-0 -left-full overflow-hidden"
                         : "w-full md:w-60 left-0",
@@ -102,30 +95,12 @@ export default function SecretLayout({ children }: User) {
                             onClick={onCreateDocument}
                         />
                     </div>
-<<<<<<< HEAD
-                )}
 
-                <div className="p-4">Sidebar content</div>
-
-                <div>
-                    <DocumentList />
-                </div>
-            </div>
-
-            <div className="flex-1 relative transition-all duration-300">
-                {isCollapsed && (
-                    <div
-                        className="absolute top-3 left-3 cursor-pointer text-muted-foreground z-50"
-                        onClick={() => setIsCollapsed(false)}
-                    >
-                        <PanelLeftClose className="h-8 w-8" />
-=======
                     <div className="mt-4 px-2">
                         <DocumentList />
                         <div className="mt-6">
                             <TrashBox />
                         </div>
->>>>>>> recovery-branch
                     </div>
                 </div>
 

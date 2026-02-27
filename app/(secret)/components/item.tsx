@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-=======
 "use client";
 
 import {
@@ -12,25 +5,12 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
     DropdownMenuSeparator,
->>>>>>> recovery-branch
+    DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
-<<<<<<< HEAD
-import { ChevronDownIcon, MoreHorizontal, Plus, Trash } from "lucide-react";
-import React from "react";
-
-interface ItemProps {
-    label: string;
-    id: Id<"documents">;
-    level: number;
-}
-
-export default function Item({ label, id, level }: ItemProps) {
-    const createDocument = useMutation(api.document.createDocument);
-=======
 import {
     ChevronDown,
     ChevronRight,
@@ -44,7 +24,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useSidebar } from "@/hook/use-sidebar"; // Hookni import qilamiz
+import { useSidebar } from "@/hook/use-sidebar";
 
 interface ItemProps {
     id?: Id<"documents">;
@@ -52,7 +32,7 @@ interface ItemProps {
     level?: number;
     onExpand?: () => void;
     onClick?: () => void;
-    icon?: LucideIcon;
+    icon?: LucideIcon; // Mana shu yerda LucideIcon turi berildi
     expanded?: boolean;
     active?: boolean;
     isSearch?: boolean;
@@ -66,7 +46,7 @@ export default function Item({
     level,
     onExpand,
     expanded,
-    icon: Icon,
+    icon: Icon, // Icon sifatida qabul qilinmoqda
     onClick,
     active,
     isSearch,
@@ -75,7 +55,7 @@ export default function Item({
 }: ItemProps) {
     const { user } = useUser();
     const router = useRouter();
-    const sidebar = useSidebar(); // Sidebar hookini chaqiramiz
+    const sidebar = useSidebar();
 
     const createDocument = useMutation(api.document.createDocument);
     const archive = useMutation(api.document.archive);
@@ -92,66 +72,11 @@ export default function Item({
             error: "Error archive document",
         });
     };
->>>>>>> recovery-branch
 
     const onCreateDocument = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     ) => {
         event.stopPropagation();
-<<<<<<< HEAD
-
-        if (!id) return;
-
-        createDocument({
-            title: "ontitle",
-            parentDocument: id,
-        });
-    };
-
-    const { user } = useUser();
-    return (
-        <div className="group text-neutral-400 w-full cursor-pointer hover:bg-neutral-300/20 transition-all ease-in-out duration-200  text-[20px] flex justify-between">
-            {!!id && (
-                <div className="flex flex-row items-center">
-                    {" "}
-                    <ChevronDownIcon />
-                    {label}
-                </div>
-            )}
-            <div className="flex items-center">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        {!!id && (
-                            <div className="flex flex-row ga-2 cursor-pointer opacity-0 group-hover:opacity-100 text-neutral-400">
-                                <MoreHorizontal />
-                            </div>
-                        )}
-                    </DropdownMenuTrigger>
-                    <div
-                        className="flex flex-row ga-2 cursor-pointer opacity-0 group-hover:opacity-100 text-neutral-400"
-                        role="button"
-                        onClick={onCreateDocument}
-                    >
-                        <Plus />
-                    </div>
-                    <DropdownMenuContent>
-                        <div className="flex flex-row m-2 p-2 cursor-pointer w-auto hover:bg-neutral-300/20 transition-all ease-in-out duration-200 gap-1">
-                            <Trash />
-                            Delete Content
-                        </div>
-
-                        <DropdownMenuItem className="w-full border-t border-neutral-400/40">
-                            <div className="flex justify-center items-centerer  w-full text-[15px]">
-                                Last send {user?.fullName}
-                            </div>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-        </div>
-    );
-}
-=======
         if (!id) return;
 
         const promise = createDocument({
@@ -161,7 +86,6 @@ export default function Item({
             if (!expanded) {
                 onExpand?.();
             }
-            // Yangi dokument yaratilganda o'sha yerga o'tish va sidebarni yopish
             router.push(`/documents/${documentId}`);
             if (window.innerWidth < 768) {
                 sidebar.onCollapse();
@@ -182,12 +106,8 @@ export default function Item({
         onExpand?.();
     };
 
-    // ELEMENT BOSILGANDA (NAVIGATSIYA)
     const handleItemClick = () => {
-        // Asosiy onClick mantiqi (masalan, navigatsiya)
         onClick?.();
-
-        // MOBILDA SIDEBARNI YOPISH
         if (window.innerWidth < 768) {
             sidebar.onCollapse();
         }
@@ -202,7 +122,7 @@ export default function Item({
                 active && "bg-neutral-200/10",
             )}
             role="button"
-            onClick={handleItemClick} // Yangilangan funksiya
+            onClick={handleItemClick}
         >
             <div
                 style={{
@@ -210,7 +130,6 @@ export default function Item({
                 }}
                 className="flex flex-row dark:text-neutral-400 text-black items-center gap-1 overflow-hidden"
             >
-                {/* Chevron icon faqat dokumentlar uchun */}
                 {!!id && (
                     <div
                         role="button"
@@ -240,7 +159,6 @@ export default function Item({
                 <span className="truncate">{label}</span>
             </div>
 
-            {/* Qidiruv va Sozlamalar uchun Shortcut belgisi */}
             {(isSearch || isSetting) && (
                 <div className="flex items-center text-muted-foreground pr-4">
                     <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
@@ -250,7 +168,6 @@ export default function Item({
                 </div>
             )}
 
-            {/* Dokument amallari (More va Plus) */}
             {!!id && (
                 <div className="flex flex-row text-neutral-400 text-sm opacity-0 group-hover:opacity-100 mr-4 gap-2 items-center">
                     <DropdownMenu>
@@ -271,14 +188,13 @@ export default function Item({
                             side="right"
                             forceMount
                         >
-                            <div
+                            <DropdownMenuItem
                                 className="flex flex-row w-full gap-x-2 px-2 py-2 cursor-pointer hover:bg-neutral-400/30 items-center text-red-500"
-                                role="button"
                                 onClick={onArchive}
                             >
-                                <Trash size={16} />
+                                <Trash size={16} className="mr-2" />
                                 <span>Delete</span>
-                            </div>
+                            </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <div className="p-2 text-xs text-muted-foreground">
                                 Last edited by: {user?.fullName}
@@ -309,4 +225,3 @@ Item.Skeleton = function SkeletonItem({ level }: { level?: number }) {
         </div>
     );
 };
->>>>>>> recovery-branch
