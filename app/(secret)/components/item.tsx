@@ -32,7 +32,7 @@ interface ItemProps {
     level?: number;
     onExpand?: () => void;
     onClick?: () => void;
-    icon?: LucideIcon; // Mana shu yerda LucideIcon turi berildi
+    icon?: LucideIcon;
     expanded?: boolean;
     active?: boolean;
     isSearch?: boolean;
@@ -46,7 +46,7 @@ export default function Item({
     level,
     onExpand,
     expanded,
-    icon: Icon, // Icon sifatida qabul qilinmoqda
+    icon: Icon,
     onClick,
     active,
     isSearch,
