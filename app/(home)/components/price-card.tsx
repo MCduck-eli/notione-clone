@@ -6,55 +6,53 @@ import { SignInButton, useAuth } from "@clerk/nextjs";
 
 export default function PriceCard() {
     const { isLoaded, isSignedIn } = useAuth();
+
     return (
-        <>
-            <div className="w-full h-auto mb-8 flex md:flex-row flex-col gap-4">
+        <div className="w-full px-4 py-8">
+            {" "}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {price.map((item, index) => (
                     <div
                         key={index}
-                        className="flex flex-col p-6 md:w-auto w-110 mx-auto max-w-lg text-center text-gray-900 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8  dark:text-white"
+                        className="flex flex-col p-6 w-full mx-auto max-w-lg text-center text-gray-900 rounded-lg border border-gray-200 shadow-sm dark:border-gray-700 xl:p-8 dark:bg-neutral-800/50 dark:text-white"
                     >
-                        <h3 className="mb-4 text-2xl font-semibold">
-                            {item.name}
-                        </h3>
-                        <p className="font-light text-gray-500 md:text-lg text-sm dark:text-gray-400">
+                        <h3 className="mb-4 text-2xl font-bold">{item.name}</h3>
+                        <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400 min-h-15">
                             {item.bio}
                         </p>
+
                         <div className="flex justify-center items-baseline my-8">
-                            <span className="mr-2 text-5xl font-extrabold">
-                                {item.price}
+                            <span className="mr-2 text-4xl md:text-5xl font-extrabold">
+                                {item.price.split("/")[0]}
                             </span>
                             <span className="text-gray-500 dark:text-gray-400">
                                 /month
                             </span>
                         </div>
 
-                        <div className="w-full flex justify-center items-center relative bottom-2">
-                            {!isLoaded && <Loader />}
+                        <div className="min-h-[50px] flex items-center justify-center">
+                            {!isLoaded ? (
+                                <Loader />
+                            ) : !isSignedIn ? (
+                                <SignInButton mode="modal">
+                                    <Button className="w-full cursor-pointer hover:opacity-80 transition">
+                                        Log In
+                                    </Button>
+                                </SignInButton>
+                            ) : (
+                                <Button className="w-full cursor-pointer hover:opacity-80 transition">
+                                    Get started
+                                </Button>
+                            )}
                         </div>
 
-                        {isLoaded && !isSignedIn && (
-                            <SignInButton mode="modal">
-                                <Button className="w-full mb-4 cursor-pointer">
-                                    Log In
-                                </Button>
-                            </SignInButton>
-                        )}
-
-                        {isLoaded && isSignedIn && (
-                            <Button className="w-full mb-4 cursor-pointer">
-                                Get started
-                            </Button>
-                        )}
-
-                        <ul role="list" className="mb-8 space-y-4 text-left">
-                            {item.features.map((feature, index) => (
-                                <li key={index} className="flex items-center">
+                        <ul role="list" className="mt-8 space-y-4 text-left">
+                            {item.features.map((feature, fIndex) => (
+                                <li key={fIndex} className="flex items-start">
                                     <svg
-                                        className="shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                                        className="shrink-0 w-5 h-5 text-green-500 mt-0.5"
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -62,7 +60,7 @@ export default function PriceCard() {
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                    <span className="ml-3 text-gray-500 dark:text-gray-400">
+                                    <span className="ml-3 text-sm text-gray-600 dark:text-gray-300">
                                         {feature}
                                     </span>
                                 </li>
@@ -71,7 +69,7 @@ export default function PriceCard() {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 }
 
@@ -79,7 +77,7 @@ const price = [
     {
         name: "Free",
         bio: "For individuals who want to try out our product.",
-        price: "Free/month",
+        price: "Free",
         features: [
             "Collaboration with up to 3 users",
             "Basic analytics and reporting",
@@ -92,7 +90,7 @@ const price = [
     {
         name: "Plus",
         bio: "For teams who want to scale their productivity.",
-        price: "$8/month",
+        price: "$8",
         features: [
             "Unlimited collaboration",
             "Advanced analytics and reporting",
@@ -105,7 +103,7 @@ const price = [
     {
         name: "Business",
         bio: "For businesses that need advanced features and support.",
-        price: "$15/month",
+        price: "$15",
         features: [
             "Unlimited collaboration",
             "Advanced analytics and reporting",

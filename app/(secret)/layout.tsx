@@ -50,13 +50,13 @@ export default function SecretLayout({ children }: User) {
             {!sidebar.isCollapsed && (
                 <div
                     onClick={sidebar.onCollapse}
-                    className="md:hidden fixed inset-0 bg-black/40 z-[99998]"
+                    className="md:hidden fixed inset-0 bg-black/40 z-99998"
                 />
             )}
 
             <aside
                 className={cn(
-                    "dark:bg-neutral-900 bg-neutral-100 relative transition-all duration-300 group z-[99999] flex flex-col h-full",
+                    "dark:bg-neutral-900 bg-neutral-100 relative transition-all duration-300 group z-99999 flex flex-col h-full",
                     sidebar.isCollapsed
                         ? "w-0 -left-full overflow-hidden"
                         : "w-full md:w-60 left-0",

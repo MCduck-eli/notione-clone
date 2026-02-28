@@ -9,7 +9,6 @@ import Title from "./title";
 import { Menu } from "lucide-react";
 import PublishAt from "./publishat";
 import MenuPage from "./menu";
-import { Banner } from "./banner";
 
 interface INavbarProps {
     isCollapsed: boolean;
@@ -61,7 +60,6 @@ export default function Navbar({ isCollapsed, onReset }: INavbarProps) {
                     <MenuPage documentId={document?._id} />
                 </div>
             </div>
-            {document?.isArchived && <Banner documentId={document?._id} />}
         </>
     );
 }
